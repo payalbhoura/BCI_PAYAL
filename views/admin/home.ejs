@@ -1,0 +1,305 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Page</title>
+    <style>
+        * {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+
+        .header-logo{
+            height: 88px;
+            width: 100%;
+            box-shadow: 0px 2px 4px grey;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: white;
+            font-size: 12px;
+            background-image: linear-gradient(to right, #2C3E50, #34495E); /* Dark linear gradient background */
+
+          
+        }
+
+        h2 {
+            font-weight: bold;
+            font-size: 2.0em;
+            text-align: center;
+            padding: 10px 10px;
+            border-radius: 10px;
+            /* box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.5);
+            background-color: #f0f0f0; */
+            color: #007bff;
+            font-family: Arial, sans-serif;
+        }
+        h2 {
+            font-size: 24px;
+            /* Adjust font size */
+            font-weight: bold;
+            /* Make the text bold */
+            color: #666;
+            /* Set text color to a lighter shade */
+            margin-bottom: 10px;
+            /* Adjust bottom margin */
+            text-align: center;
+            /* Center-align the text */
+            text-transform: uppercase;
+            /* Uppercase text */
+            padding: 10px;
+            /* Add padding */
+            border-radius: 6px;
+            /* Add border radius */
+            box-shadow: 0 0px 2px rgba(0, 0, 0, 0.1);
+            width: 100%
+                /* Add a subtle shadow */
+                /* background-image: linear-gradient(to right, #f0f0f0, #e0e0e0); */
+                /* Light linear gradient background */
+        }
+
+        #header {
+            width: 100%;
+            height: 20%;
+            display: flex;
+            font: 20px;
+            box-shadow: 0px 0px 1px grey;
+            padding: 2%;
+            margin-top: 2%
+        }
+
+
+
+        .home,
+        .approved {
+            margin: 0px 20px;
+            cursor: pointer;
+
+        }
+
+        .home:hover,
+        .approved:hover {
+            text-decoration: underline;
+            color: #007bff;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 20px auto;
+            padding: 20px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            background-color: #f9f9f9;
+            height: 80%;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 20px;
+        }
+
+        th,
+        td {
+            padding: 8px;
+            text-align: left;
+            border-bottom: 1px solid #ddd;
+        }
+
+        th {
+            background-color: #f2f2f2;
+        }
+
+        .action-buttons button {
+            padding: 5px 10px;
+            margin-right: 5px;
+            cursor: pointer;
+        }
+
+        .action-buttons button.accept {
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+        }
+
+        .action-buttons button.reject {
+            background-color: #f44336;
+            color: white;
+            border: none;
+        }
+    </style>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+</head>
+
+<body>
+    <div class="header-logo">
+        <h1 style="cursor: pointer; user-select: none; font-family: Arial, Helvetica, sans-serif ;width:100%; align-items: center;"
+            title="BILLING CUM INVENTORY MANAGEMENT SYSTEM">BCI MANAGEMENT SYSTEM</h1>
+    </div>
+    <h2 style="font-family: Arial, Helvetica, sans-serif;">HOME PAGE</h2>
+    <div id="header">
+        <div class="home"> <a href="/admin/home">HOME </a></div>
+        <div class="approved"> <a href="/admin/userhistory">USER HISTORY</a></div>
+        <a href="/logout" class="nav-btn useractions">Logout</a>
+    </div>
+    <div class="container">
+        <table id="users-table">
+            <thead>
+                <tr>
+                    <th>Image</th>
+                    <th>ID</th>
+                    <th>Username</th>
+                    <th>Email</th>
+                    <th>Adress</th>
+                    <th>City</th>
+                    <th>Pincode</th>
+                    <th>Pan-Number</th>
+                    <th>Action</th>
+
+                </tr>
+            </thead>
+            <tbody>
+                <% users.forEach(user=> { %>
+                    <tr id="<%=user.id%>">
+
+                        <td>
+                            <%=user.image %>
+                        </td>
+                        <td>
+                            <%=user.id %>
+                        </td>
+                        <td>
+                            <%=user.name %>
+                        </td>
+                        <td>
+                            <%=user.email %>
+                        </td>
+                        <td>
+                            <%=user.adress %>
+                        </td>
+                        <td>
+                            <%=user.city %>
+                        </td>
+                        <td>
+                            <%=user.state %>
+                        </td>
+                        <td>
+                            <%=user.pincode %>
+                        </td>
+
+                        <td class="action-buttons">
+                            <button class="accept" onclick="acceptUser(`<%= user.id %>`)">Accept</button>
+                            <button class="reject" onclick="rejectUser(`<%= user.id %>`)">Reject</button>
+                        </td>
+                    </tr>
+                    <% }) %>
+            </tbody>
+        </table>
+    </div>
+
+    <script>
+        // Function to accept a user
+
+        function acceptUser(userId) {
+            Swal.fire({
+                title: "Are you sure you want to Accept this user's request?",
+                text: "You won't be able to revert this!",
+                icon: "warning",
+                showCancelButton: true,
+                confirmButtonColor: "#3085d6",
+                cancelButtonColor: "#d33",
+                confirmButtonText: "Yes, accept it!"
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    Swal.fire({
+                        title: "Accepted!",
+                        text: "You accept the user",
+                        icon: "success"
+                    });
+
+                    fetch(`/admin/user/approved?id=${userId}`, {
+                        method: 'put',
+                        headers: {
+                            'Content-Type': 'application/json'
+                        },
+                    })
+                        .then(response => {
+                            if (response.ok) {
+                                document.getElementById(userId).remove();
+                            }
+                            throw new Error('Network response was not ok.');
+                        })
+                        .catch(error => {
+                            console.error('Error:', error);
+                        });
+                }
+            })
+
+        }
+
+        // Function to reject a user
+        function rejectUser(userId) {
+            Swal.fire({
+                title: "Are you sure you want to reject this user's request?",
+                text: "You won't be able to revert this!",
+                icon: "warning",
+                showCancelButton: true,
+                confirmButtonColor: "#3085d6",
+                cancelButtonColor: "#d33",
+                confirmButtonText: "Yes, Reject it!"
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    Swal.fire({
+                        title: "Rejected!",
+                        text: "You reject the user",
+                        icon: "success"
+                    });
+
+                    fetch(`/admin/user/rejected?id=${userId}`, {
+                        method: 'PUT',
+                        headers: {
+                            'Content-Type': 'application/json'
+                        },
+                        body: JSON.stringify({ action: 'reject' })
+                    })
+                        .then(response => {
+                            if (response.ok) {
+                                document.getElementById(userId).remove(); I
+                            }
+                            throw new Error('Network response was not ok.');
+                        })
+                        .catch(error => {
+                            console.error('Error:', error);
+                        });
+                }
+            });
+        }
+
+        // Function to render users table
+        function renderUsersTable(users) {
+            const tableBody = document.querySelector('#users-table tbody');
+            tableBody.innerHTML = '';
+
+            users.forEach(user => {
+                const row = `
+                    <tr>
+                        <td>${user.id}</td>
+                        <td>${user.username}</td>
+                        <td>${user.email}</td>
+                        <td>${user.status}</td>
+                        <td class="action-buttons">
+                            <button class="accept" onclick="acceptUser(${user.id})">Accept</button>
+                            <button class="reject" onclick="rejectUser(${user.id})">Reject</button>
+                        </td>
+                    </tr>
+                `;
+                tableBody.innerHTML += row;
+            });
+        }
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,252 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css"
+        integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <title>Har Hit Store | SignUp</title>
+    <style>
+        /* Apply box-sizing property to all elements */
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        h2 {
+            font-size: 24px;
+            /* Adjust font size */
+            font-weight: bold;
+            /* Make the text bold */
+            color: #666;
+            /* Set text color to a lighter shade */
+            margin-bottom: 10px;
+            /* Adjust bottom margin */
+            text-align: center;
+            /* Center-align the text */
+            text-transform: uppercase;
+            /* Uppercase text */
+            padding: 10px;
+            /* Add padding */
+            border-radius: 6px;
+            /* Add border radius */
+            box-shadow: 0 0px 2px rgba(0, 0, 0, 0.1);
+            width: 100%
+                /* Add a subtle shadow */
+                /* background-image: linear-gradient(to right, #f0f0f0, #e0e0e0); */
+                /* Light linear gradient background */
+        }
+
+
+
+        /* Remove default input field borders and adjust padding */
+        input {
+            border: none;
+            padding: 10px;
+            width: 100%;
+            margin-bottom: 10px;
+            /* Adjust as needed to control the gap between input fields */
+            font-size: 16px;
+            /* Adjust font size */
+            font-family: Arial, sans-serif;
+            /* or any other font family you prefer */
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            /* Add box-shadow */
+        }
+
+        /* Style the placeholder text */
+        /* Style the file input */
+        input[type="file"] {
+            padding-top: 12px;
+            /* Adjust vertically align the file input */
+        }
+
+        /* Ensure consistent font size and family */
+        input {
+            font-size: 16px;
+            /* Adjust as needed */
+            font-family: Arial, sans-serif;
+            /* or any other font family you prefer */
+        }
+
+        /* Style the submit button */
+
+        #signUpBtn {
+            display: inline-block;
+            padding: 12px 24px;
+            /* Adjust padding to your preference */
+            font-size: 16px;
+            font-weight: bold;
+            text-align: center;
+            text-transform: uppercase;
+            border: none;
+            border-radius: 6px;
+            /* Adjust border radius for rounded corners */
+            cursor: pointer;
+            background-image: linear-gradient(to right, blue, purple);
+            color: white;
+            /* Set text color */
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            /* Add a subtle shadow */
+            transition: background-color 0.3s ease;
+            /* Add smooth transition effect */
+        }
+
+        #signUpBtn:hover {
+            background-image: linear-gradient(to right, #4e4086, #3d20b1);
+            /* Darken the background gradient on hover */
+        }
+
+        .header-logo {
+            height: 88px;
+            width: 100%;
+            box-shadow: 0px 2px 4px grey;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: white;
+            font-size: 12px;
+            background-image: linear-gradient(to right, #2C3E50, #34495E); /* Dark linear gradient background */
+        }
+
+        /* Change cursor to pointer on hover */
+
+
+        /* Style the hyperlink */
+        p a {
+            color: blue;
+            /* Change hyperlink color */
+            text-decoration: none;
+            /* Remove underline from hyperlink */
+        }
+
+        p a:hover {
+            text-decoration: underline;
+            /* Add underline on hover */
+        }
+
+        /* .passwordInput input[type="password"] {
+            width: 100%;
+        } */
+
+        .signupform {
+            margin-top: 150px;
+            margin-bottom: 20px;
+            width: 600px;
+            height: 370px;
+            box-shadow: 0px 0px 5px grey;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-evenly;
+            align-items: center;
+            padding: 20px;
+            /* overflow: auto; */
+        }
+
+        .innerDiv {
+            display: flex;
+            justify-content: space-between;
+        }
+
+        .innerLeft,
+        .innerRight {
+            height: 100%;
+            width: 47%;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-evenly;
+            align-items: center;
+        }
+
+        .passwordInput {
+            display: flex;
+        }
+
+        /* .passwordInput>input:focus {
+            outline: none;
+        } */
+
+        /* #signUpBtn {
+            width: 50%;
+            padding: 10px;
+            border: none;
+            background-image: linear-gradient(to right, blue, purple);
+            color: white;
+            font-size: 16px;
+            margin-top: 2%;
+            
+        } */
+
+        .footer {
+            width: 100%;
+            position: absolute;
+            bottom: 0;
+            box-shadow: 0px 0px 1px 4px rgb(247, 242, 242);
+            color: rgb(245, 241, 251);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-family: Arial, Helvetica, sans-serif;
+            font-size: 14px;
+            font-weight: 700;
+            background-image: linear-gradient(to right, #2C3E50, #34495E); /* Dark linear gradient background */
+
+        }
+    </style>
+    <link rel="stylesheet" href="/styles/header.css">
+</head>
+
+<body>
+    <div class="header-logo">
+        <h1 style="cursor: pointer; user-select: none; font-family: Arial, Helvetica, sans-serif;"
+            title="BILLING CUM INVENTORY MANAGEMENT SYSTEM">BCI MANAGEMENT SYSTEM</h1>
+    </div>
+    <!-- Header end -->
+    <div class="content">
+        <form class="signupform" id="signupform" enctype="multipart/form-data">
+            <h2 style="font-family: Arial, Helvetica, sans-serif;">SIGNUP FORM</h2>
+            <div class="innerDiv" >
+                <div class="innerLeft">
+                    <input type="text" name="name" id="name" placeholder="Name">
+                    <input type="email" name="email" id="email" placeholder="Email">
+                    <div style="display: flex; justify-content: flex-start; width: 90%; align-items: center; margin-top:20px;">
+                        <input type="password" name="password" id="password" placeholder="Password" style="border: none; width: 90%;">
+                        <i class="fa fa-eye" id="hideShowPass" aria-hidden="true" style="position: relative; right: 0; color: grey;"></i>
+                    </div>
+                    <input type="text" name="gst" id="gst" placeholder="GST Number">
+                    <input type="text" name="pan" id="pan" placeholder="PAN Number">
+
+                    <input type="file" name="img" id="img" placeholder="Photo" style="text-transform: capitalize;">
+                </div>
+                <div class="innerRight">
+                    <input type="tel" name="mobile" id="mobile" placeholder="Mobile Nmber">
+                    <input type="text" name="store" id="store" placeholder="Store Name "
+                        style="text-transform: capitalize;">
+                    <input type="text" name="address" id="address" placeholder="Store Address"
+                        style="text-transform: capitalize;">
+                    <input type="text" name="city" id="city" placeholder="City" style="text-transform: capitalize;">
+                    <input type="text" name="state" id="state" placeholder="State" style="text-transform: capitalize;">
+                    <input type="text" name="pincode" id="pincode" placeholder="Pincode"
+                        style="text-transform: capitalize;">
+
+                </div>
+            </div>
+            <p id="err" style=" font-weight: bold; text-align: center; width: 90%; text-wrap: wrap;"></p>
+            <input type="submit" value="SignUp" id="signUpBtn">
+            <p>Registered ? <a href="/login">click here </a></p>
+        </form>
+    </div>
+    <div class="footer">
+        <p>Designed by: PAYAL KATOCH </p>
+    </div>
+</body>
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+<script src="js/signup.js"></script>
+
+
+
+
+</html>

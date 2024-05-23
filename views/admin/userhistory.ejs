@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Page</title>
+    <style>
+        * {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+        .header-logo{
+            height: 88px;
+            width: 100%;
+            box-shadow: 0px 2px 4px grey;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: white;
+            font-size: 12px;
+            background-image: linear-gradient(to right, #2C3E50, #34495E); /* Dark linear gradient background */       
+        }
+
+        h2 {
+            font-weight: bold;
+            font-size: 2.5em;
+            text-align: center;
+            padding: 10px 20px;
+            border-radius: 10px;
+            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.5);
+            background-color: #f0f0f0;
+            color: #007bff;
+            font-family: Arial, sans-serif;
+        }
+        h4 {
+            font-weight: bold;
+            text-align: center;
+            /* padding: 10px 20px; */
+            border-radius: 10px;
+            background-color: #f0f0f0;
+            color: #e0708e;
+            font-family: Arial, sans-serif;
+        }
+
+        #header {
+            width: 100%;
+            height: 20%;
+            display: flex;
+            font: 20px;
+            box-shadow: 0px 0px 1px grey;
+            padding: 2%;
+            margin-top: 2%
+        }
+
+
+
+        .home,
+        .approved {
+            margin: 0px 20px;
+            cursor: pointer;
+
+        }
+
+        .home:hover,
+        .approved:hover {
+            text-decoration: underline;
+            color: #007bff;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 20px auto;
+            padding: 20px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            background-color: #f9f9f9;
+            height: 80%;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 20px;
+        }
+        th,
+        td {
+            padding: 8px;
+            text-align: left;
+            border-bottom: 1px solid #ddd;
+        }
+
+        th {
+            background-color: #f2f2f2;
+        }
+
+        .action-buttons button {
+            padding: 5px 10px;
+            margin-right: 5px;
+            cursor: pointer;
+        }
+
+        .action-buttons button.accept {
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+        }
+
+        .action-buttons button.reject {
+            background-color: #f44336;
+            color: white;
+            border: none;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="header-logo">
+        <h1 style="cursor: pointer; user-select: none; font-family: Arial, Helvetica, sans-serif;" title="BILLING CUM INVENTORY MANAGEMENT SYSTEM">BCI MANAGEMENT SYSTEM</h1>
+</div>
+
+    <h2>ADMIN PANEL</h2>
+    <h4>USER HISTORY</h4>
+
+    <div id="header">
+        <div class="home"> <a href="/admin/home">HOME </a></div>
+        <div class="approved"> <a href="/admin/userhistory">USER HISTORY</a></div>
+    </div>
+
+    
+    <div class="container">
+        <table id="users-table">
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Username</th>
+                    <th>Email</th>
+                    <th>Status</th>
+                </tr>
+            </thead>
+            <tbody>
+                <% users.forEach(user=> { %>
+                    <tr id="<%=user.id%>">
+                        <td>
+                            <%= user.id %>
+                        </td>
+                        <td>
+                            <%= user.name %>
+                        </td>
+                        <td>
+                            <%= user.email %>
+                        </td>
+                        <td class="status">
+                           <% if (user.approved) { %>
+                               "Approved"
+                           <% } %>
+                           <% if (user.rejected) { %>
+                                "Rejected"
+                           <% } %>
+
+                        </td>
+                    </tr>
+                    <% }) %>
+            </tbody>
+        </table>
+    </div>
+
+    <script>
+        // Function to accept a user
+        function acceptUser(userId) {
+            fetch('/admin/update' + userId, {
+                method: 'put',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+            })
+                .then(response => {
+                    if (response.ok) {
+                        document.getElementById(userId).remove();
+                    }
+                    throw new Error('Network response was not ok.');
+                })
+                .then(data => {
+                    console.log(data);
+                    renderUsersTable(data.users);
+                })
+                .catch(error => {
+                    console.error('Error:', error);
+                });
+        }
+
+        // Function to reject a user
+        function rejectUser(userId) {
+            fetch('/admin/update/' + userId, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({ action: 'reject' })
+            })
+                .then(response => {
+                    if (response.ok) {
+                        return response.json();
+                    }
+                    throw new Error('Network response was not ok.');
+                })
+                .then(data => {
+                    console.log(data);
+                    renderUsersTable(data.users);
+                })
+                .catch(error => {
+                    console.error('Error:', error);
+                });
+        }
+
+        // Function to render users table
+        function renderUsersTable(users) {
+            const tableBody = document.querySelector('#users-table tbody');
+            tableBody.innerHTML = '';
+
+            users.forEach(user => {
+                const row = `
+                    <tr>
+                        <td>${user.id}</td>
+                        <td>${user.username}</td>
+                        <td>${user.email}</td>
+                        <td>${user.status}</td>
+                        <td class="action-buttons">
+                            <button class="accept" onclick="acceptUser(${user.id})">Accept</button>
+                            <button class="reject" onclick="rejectUser(${user.id})">Reject</button>
+                        </td>
+                    </tr>
+                `;
+                tableBody.innerHTML += row;
+            });
+        }
+    </script>
+</body>
+
+</html>
