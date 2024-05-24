@@ -60,7 +60,7 @@ app.post("/forgotpassword",forgotpassword)
 
 
 app.get('/changepassword/:token',changepasswordpage)
-app.get('changepassword',changepassword)
+app.post('/changepassword',changepassword)
 
 
 

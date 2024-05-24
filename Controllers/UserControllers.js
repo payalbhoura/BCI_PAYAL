@@ -6,13 +6,13 @@ const helper = require("../utils/helper")
 const DailyReport = require('../Models/dailyReports')
 const nodemailer = require("nodemailer")
 const fs=require('fs')
-const { generateResetToken } = require('../utils/jwtUtils');
+const { generateResetToken,verifyResetToken } = require('../utils/jwtUtils');
 
 
 const transporter = nodemailer.createTransport({
     service: "gmail",
     auth: {
-        user: "payalbhourakatoch@gmail.com",
+        user: process.env.MYEMAIL,
         pass: process.env.Nodemailer_Password
     }
 });
@@ -33,7 +33,11 @@ function getLoginPage(req, res) {
 
 async function getBillPage(req, res) {
     let invNo = await generateInvoiceNumber(req)
-    const user = {
+    const items = await Product.find(
+        { shopKeeperId: req.session.userId }, 
+        'name'
+    );
+        const user = {
         name: req.session.userName,
         mobile: req.session.mobile,
         mail: req.session.email,
@@ -44,7 +48,7 @@ async function getBillPage(req, res) {
         invoiceDate: new Date().toLocaleDateString(),
         address: req.session.address
     }
-    res.render("user/generatebill", { user: user })
+    res.render("user/generatebill", { user: user, items:items })
 }
 
 function getSignupPage(req, res) {
@@ -346,7 +350,7 @@ function createUser(req, res) {
     User.create(user)
         .then((result) => {
             const mailOption = {
-                from: "payalbhourakatoch@gmail.com",
+                from: process.env.MYEMAIL,
                 to: req.body.email,
                 subject: "Regarding about the inventory system",
                 html: `
@@ -421,30 +425,37 @@ function forgotpasswordpage(req, res) {
     res.render("message/mail/forgetpassword");
 }
 
+const ejs= require('ejs')
+
 function forgotpassword(req, res) {
     const email = req.body.email;
     const token = generateResetToken(email);
-    const resetUrl = `http://localhost:8000/resetpassword/${token}`;
+    const resetUrl = `http://localhost:8000/changepassword/${token}`;
 
     const filePath = path.join(__dirname, '../views/message/mail/changepassword.ejs');
-    let htmlcontent = fs.readFileSync(filePath, 'utf8');
-    htmlcontent = htmlcontent.replace('{{resetUrl}}', resetUrl); // Replace placeholder with the actual reset URL
 
-    const mailOption = {
-        from: process.env.MYEMAIL,
-        to: email,
-        subject: "Regarding about the inventory system || CHANGE PASSWORD",
-        html: htmlcontent
-    };
-
-    transporter.sendMail(mailOption, (error, info) => {
-        if (error) {
-            console.log(error);
-            return res.status(500).json({ message: 'Error sending email' });
-        } else {
-            console.log("Email sent", info.response);
-            return res.status(200).json({ message: 'Password reset link sent to your email' });
+    ejs.renderFile(filePath, { resetUrl: resetUrl }, (err, htmlcontent) => {
+        if (err) {
+            console.error("Error rendering EJS template:", err);
+            return res.status(500).json({ message: 'Error generating email content' });
         }
+
+        const mailOption = {
+            from: process.env.MYEMAIL,
+            to: email,
+            subject: "Regarding the inventory system || CHANGE PASSWORD",
+            html: htmlcontent
+        };
+
+        transporter.sendMail(mailOption, (error, info) => {
+            if (error) {
+                console.log(error);
+                return res.status(500).json({ message: 'Error sending email' });
+            } else {
+                console.log("Email sent", info.response);
+                return res.status(200).json({ message: 'Password reset link sent to your email' });
+            }
+        });
     });
 }
 
@@ -483,8 +494,6 @@ function forgotpassword(req, res) {
     }
 
     function changepasswordpage(req,res){
-
-        (req, res) => {
             const { token } = req.params;
             const decoded = verifyResetToken(token);
         
@@ -492,12 +501,12 @@ function forgotpassword(req, res) {
                 return res.status(400).send('Invalid or expired token');
             }
             res.render("message/changepassword",{ token })
-        }
     }
 
     const changepassword=async (req, res) => {
         const { token, password } = req.body;
         const decoded = verifyResetToken(token);
+        console.log("decoded",decoded)
     
         if (!decoded) {
             return res.status(400).send('Invalid or expired token');

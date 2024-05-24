@@ -5,7 +5,7 @@ const nodemailer = require("nodemailer")
 const transporter = nodemailer.createTransport({
     service: "gmail",
     auth: {
-        user: "payalbhourakatoch@gmail.com",
+        user: process.env.MYEMAIL,
         pass: process.env.Nodemailer_Password
     }
 });
@@ -92,7 +92,7 @@ async function approveduser(req, res) {
         console.log(user);
         if (user) {
             const mailOption = {
-                from: "payalbhourakatoch@gmail.com",
+                from: process.env.MYEMAIL,
                 to: user.email,
                 subject: "Regarding about your inventory system",
                 html: `
@@ -130,7 +130,7 @@ async function rejecteduser(req, res) {
         console.log(user);
         if (user) {
             const mailOption = {
-                from: "payalbhourakatoch@gmail.com",
+                from: process.env.MYEMAIL,
                 to: user.email,
                 subject: "Regarding about your inventory system",
                 html:` 
