@@ -1,20 +1,21 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css"
+        integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
     <style>
-        *{
+        * {
             padding: 0;
             margin: 0;
             box-sizing: border-box;
         }
-        input:focus{
-            outline: none;
-        }
-        .header-logo{
+
+        .header-logo {
             height: 88px;
             width: 100%;
             box-shadow: 0px 2px 4px grey;
@@ -22,10 +23,27 @@
             justify-content: center;
             align-items: center;
             color: white;
-            font-size: 12px;
-            background-color: dodgerblue;
+            background-image: linear-gradient(to right, #2C3E50, #0a6aca, #354250);
+            /* Dark linear gradient background */
+            transition: background-image 0.5s ease, box-shadow 0.5s ease;
         }
-        .content{
+
+        .header-logo:hover {
+            background-image: linear-gradient(to right, #0a6aca, #2C3E50, #0a6aca);
+            box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
+        }
+
+        .header-title {
+            cursor: pointer;
+            user-select: none;
+            font-family: Arial, Helvetica, sans-serif;
+            font-size: 24px;
+            font-weight: bold;
+            letter-spacing: 2px;
+            animation: textGlow 2s ease-in-out infinite alternate;
+        }
+
+        .content {
             height: 70vh;
             width: 100%;
             display: flex;
@@ -33,63 +51,218 @@
             align-items: center;
         }
 
-        #loginForm{
-            /* height: 300px; */
-            width: 300px;
-            background-color: white;
-            box-shadow: 0px 0px 4px grey;
+        #loginHeader {
+            font-family: Arial, Helvetica, sans-serif;
+            color: #0b3460;
+            /* Change this to your desired color */
+            font-weight: bold;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.1);
+            margin-bottom: 20px;
+            /* Adjust as needed for spacing */
+            transition: color 0.3s ease, text-shadow 0.3s ease;
+        }
+
+        #loginHeader:hover {
+            color: #0056b3;
+            /* Change to a darker shade or your preferred color */
+            text-shadow: 2px 2px 10px rgba(0, 86, 179, 0.3);
+        }
+        input {
+            border: none;
+            padding: 10px;
+            width: 100%;
+            margin-bottom: 10px;
+            /* Adjust as needed to control the gap between input fields */
+            font-size: 16px;
+            /* Adjust font size */
+            font-family: Arial, sans-serif;
+            /* or any other font family you prefer */
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            /* Add box-shadow */
+        }
+
+        input:hover {
+            background-color: #f0f0f0;
+            border-color: #ceaede;
+            box-shadow:
+                0 0 10px rgba(255, 255, 255, 0.5),
+                /* Red */
+                0 0 20px rgba(143, 146, 173, 0.5),
+                /* Green */
+                0 0 30px rgba(255, 255, 255, 0.5);
+            /* Blue */
+        }
+
+        input:focus {
+            outline: none;
+            /* border-color: #0056b3; */
+            box-shadow:
+                0 0 10px rgba(255, 255, 255, 0.5),
+                /* Red */
+                0 0 20px rgba(143, 146, 173, 0.5),
+                /* Green */
+                0 0 30px rgba(255, 255, 255, 0.5);
+            /* Blue */
+        }
+
+
+        /* .passwordInput input[type="password"] {
+            width: 100%;
+            outline: none;
+        }
+
+        .passwordInput {
             display: flex;
+        }
+
+        .passwordInput>input:focus {
+            outline: none;
+        } */
+
+       
+
+
+        #loginForm {
+            /* height: 300px; */
+            width: 500px;
+            background-color: white;
+            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.4);
+            display:flex;
             flex-direction: column;
             justify-content: space-evenly;
             align-items: center;
-            padding: 10px 5px 20px 5px;
+            padding: 20px;
+            border-radius: 10px;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+
         }
 
-        #loginForm h2, #loginForm>input{
+        #loginForm:hover {
+            transform: translateY(-10px);
+            box-shadow: 0px 10px 20px rgba(0, 0, 0, 0.2);
+        }
+
+        #loginForm input[type="submit"] {
+            background-color: #007BFF;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s ease, transform 0.3s ease;
+        }
+
+
+
+        #loginForm p {
+            margin: 10px 0;
+            font-size: 14px;
+        }
+
+
+
+        #loginForm h2,
+        #loginForm>input {
             margin-top: 15px;
         }
 
-        #loginForm input{
+        #loginForm input {
             width: 90%;
             padding: 10px;
         }
 
-        #loginBtn{
+
+        #loginForm a {
+            color: #007BFF;
+            text-decoration: none;
+            transition: color 0.3s ease, text-shadow 0.3s ease;
+        }
+
+        #loginForm a:hover {
+            color: #0056b3;
+            text-decoration: underline;
+            text-shadow: 0 0 5px rgba(0, 123, 255, 0.5);
+        }
+
+       
+
+       
+
+        #loginBtn {
             background-image: linear-gradient(to right, blue, purple);
             color: white;
             font-size: 16px;
             border: none;
             margin-bottom: 10px;
         }
-        .footer{
+        #loginBtn:hover {
+            background-image: linear-gradient(to right, rgb(3, 3, 80), rgb(194, 39, 194), rgb(3, 3, 80));
+
+        }
+
+        a {
+            color: #007BFF;
+            text-decoration: none;
+            transition: color 0.3s ease, text-shadow 0.3s ease;
+        }
+
+        a:hover {
+            color: #0056b3;
+            text-decoration: underline;
+            text-shadow: 0 0 5px rgba(0, 123, 255, 0.5);
+        }
+
+        a:focus {
+            outline: none;
+            color: #0056b3;
+            text-shadow: 0 0 5px rgba(0, 123, 255, 0.5);
+        }
+
+
+
+
+        .footer {
             width: 100%;
             position: absolute;
             bottom: 0;
-            padding: 10px;
-            background-color: dodgerblue;
-            color: white;
+            box-shadow: 0px 0px 1px 4px rgb(247, 242, 242);
+            color: rgb(245, 241, 251);
             display: flex;
             justify-content: center;
             align-items: center;
             font-family: Arial, Helvetica, sans-serif;
             font-size: 14px;
             font-weight: 700;
+            background-image: linear-gradient(to right, #2C3E50, #0a6aca, #354250);
+            height:6%;
+            transition: background-image 0.5s ease, box-shadow 0.5s ease;
+           
+        }
+        .footer:hover {
+            background-image: linear-gradient(to right, #09549e, #2C3E50, #095bad);
+            box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
         }
     </style>
 </head>
+
 <body>
     <div class="header-logo">
-            <h1 style="cursor: pointer; user-select: none; font-family: Arial, Helvetica, sans-serif;" title="BILLING CUM INVENTORY MANAGEMENT SYSTEM">BCI MANAGEMENT SYSTEM</h1>
+        <h1 class="header-title" title="BILLING CUM INVENTORY MANAGEMENT SYSTEM">BCI MANAGEMENT SYSTEM</h1>
     </div>
     <!-- Header end -->
     <div class="content">
         <div class="form">
             <div action="" id="loginForm">
-                <h2 style="font-family: Arial, Helvetica, sans-serif;">ADMIN LOGIN</h2>
+                <h2 id="loginHeader">ADMIN LOGIN</h2>
                 <input type="email" name="email" id="email" placeholder="Email">
-                <div style="display: flex; justify-content: flex-start; width: 90%; align-items: center; border: 1px solid grey; margin-top:20px;">
-                    <input type="password" name="password" id="password" placeholder="Password" style="border: none; width: 90%;">
-                    <i class="fa fa-eye" id="hideShowPass" aria-hidden="true" style="position: relative; right: 0; color: grey;"></i>
+                <div
+                    style="display: flex; justify-content: flex-start; width: 90%; align-items: center; margin-top:20px;">
+                    <input type="password" name="password" id="password" placeholder="Password"
+                        style="border:none; width: 90%;">
+                    <i class="fa fa-eye" id="hideShowPass" aria-hidden="true"
+                        style="position: relative; right: 0; color: grey;"></i>
                 </div>
                 <div style="width: 90%; object-fit: contain; margin-top: 10px; margin-bottom: 0px;">
                     <p style="color: red; font-weight: bold;" id="err"></p>
@@ -99,77 +272,80 @@
             </div>
         </div>
     </div>
-    <div class="footer"><p>Designed by: </p></div>
+    <div class="footer">
+        <p><i>Designed by: Payal katoch</p>
+    </div>
 </body>
 <script>
     const email = document.getElementById("email")
-const error =  document.getElementById("err")
-const password = document.getElementById("password")
+    const error = document.getElementById("err")
+    const password = document.getElementById("password")
 
-password.addEventListener("input",e=>{
-    let regex =  /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@.#$!%*?&])[A-Za-z\d@.#$!%*?&]{8,15}$/; 
-    if(!regex.test(e.target.value.trim())){
-        error.innerText = "Password must begin with a capital and contain lower, number and alphanumeric character"
-        return false
-    } else{
-        error.innerText = ""
-    }
-})
+    password.addEventListener("input", e => {
+        let regex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@.#$!%*?&])[A-Za-z\d@.#$!%*?&]{8,15}$/;
+        if (!regex.test(e.target.value.trim())) {
+            error.innerText = "Password must begin with a capital and contain lower, number and alphanumeric character"
+            return false
+        } else {
+            error.innerText = ""
+        }
+    })
 
-email.addEventListener('input',e=>{
-    let regex = /^[a-z0-9]+@[a-z]+\.[a-z]{2,3}$/
-    if(!regex.test(e.target.value.trim())){
-        error.innerText = "Email is invalid !"
-        return false
-    } else{
-        error.innerText = ""
-    }
-})
+    email.addEventListener('input', e => {
+        let regex = /^[a-z0-9]+@[a-z]+\.[a-z]{2,3}$/
+        if (!regex.test(e.target.value.trim())) {
+            error.innerText = "Email is invalid !"
+            return false
+        } else {
+            error.innerText = ""
+        }
+    })
 
-document.getElementById("loginBtn").addEventListener('click',e=>{
-    if(error.innerText!=""){
-        return false; 
-    } else if(email.value.trim()=="" || password.value.trim()==""){
-        error.innerText = "Enter Email and Password !"
-        return false
-    }
-    fetch("/admin/login",{
-        method:"POST",
-        headers:{
-            'content-type':'application/json'
-        },
-        body:JSON.stringify({
-            email: email.value,
-            password: (password.value)
+    document.getElementById("loginBtn").addEventListener('click', e => {
+        if (error.innerText != "") {
+            return false;
+        } else if (email.value.trim() == "" || password.value.trim() == "") {
+            error.innerText = "Enter Email and Password !"
+            return false
+        }
+        fetch("/admin/login", {
+            method: "POST",
+            headers: {
+                'content-type': 'application/json'
+            },
+            body: JSON.stringify({
+                email: email.value,
+                password: (password.value)
+            })
         })
+            .then((result) => {
+                if (result.status == 200) {
+                    window.location.href = result.url
+                    return 0;
+                }
+                return result.json()
+            })
+            .then(data => {
+                if (data != 0) {
+                    error.innerText = data?.msg;
+                }
+            })
+            .catch((err) => {
+                error.innerText = err
+            });
     })
-    .then((result) => {
-        if(result.status==200){
-            window.location.href=result.url
-            return 0;
-        }
-        return result.json()
-    })
-    .then(data=>{
-        if(data!=0){
-            error.innerText=data?.msg;
-        }
-    })
-    .catch((err) => {
-        error.innerText = err
-    });
-})
 
-document.getElementById("hideShowPass").addEventListener('click',e=>{
-    if(e.target.classList.contains("fa-eye")){
-        e.target.classList.remove("fa-eye")
-        e.target.classList.add("fa-eye-slash")
-        password.type = "text"
-    } else {
-        e.target.classList.add("fa-eye")
-        e.target.classList.remove("fa-eye-slash")
-        password.type = "password"
-    }
-})
+    document.getElementById("hideShowPass").addEventListener('click', e => {
+        if (e.target.classList.contains("fa-eye")) {
+            e.target.classList.remove("fa-eye")
+            e.target.classList.add("fa-eye-slash")
+            password.type = "text"
+        } else {
+            e.target.classList.add("fa-eye")
+            e.target.classList.remove("fa-eye-slash")
+            password.type = "password"
+        }
+    })
 </script>
+
 </html>

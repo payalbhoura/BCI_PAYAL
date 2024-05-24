@@ -1,57 +1,130 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Unauthorized Access</title>
     <style>
         body {
-            background-color: #f8d7da;
-            color: #721c24;
+            background-color: #fdfafa;
+            color: #9d0817;
             font-family: Arial, sans-serif;
             display: flex;
             justify-content: center;
             align-items: center;
             height: 100vh;
             margin: 0;
+
         }
+        #loginHeader {
+            font-family: Arial, Helvetica, sans-serif;
+            color: #0b3460;
+            /* Change this to your desired color */
+            font-weight: 800;
+            font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif ;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.1);
+            margin-bottom: 20px;
+            /* Adjust as needed for spacing */
+            transition: color 0.3s ease, text-shadow 0.3s ease;
+        }
+
+        #loginHeader:hover {
+            color: #0056b3;
+            /* Change to a darker shade or your preferred color */
+            text-shadow: 2px 2px 10px rgba(0, 86, 179, 0.3);
+        }
+
         .container {
             text-align: center;
-            border: 1px solid #f5c6cb;
-            background-color: #f8d7da;
+            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.4);
+            border-radius: 10px;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
             padding: 20px;
             border-radius: 5px;
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
         }
+
         .container h1 {
             font-size: 2em;
             margin-bottom: 10px;
         }
+
         .container p {
             font-size: 1.2em;
             margin: 5px 0;
         }
-        .container a {
-            display: inline-block;
-            margin-top: 20px;
-            padding: 10px 20px;
-            background-color: #f5c6cb;
-            color: #721c24;
-            text-decoration: none;
-            border-radius: 5px;
-            transition: background-color 0.3s ease;
+        .container p:hover {
+            color: #0056b3;
+            /* Change to a darker shade or your preferred color */
+            text-shadow: 2px 2px 10px rgba(134, 25, 107, 0.3),rgba(195, 23, 66, 0.3);
         }
-        .container a:hover {
-            background-color: #e2b1b8;
+        .container>#p2 {
+            font-style: italic;
+            font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+            
+        }
+
+        #loginBtn {
+            background-image: linear-gradient(to right, rgb(77, 77, 160), rgb(193, 42, 193));
+            color: white;
+            font-size: 16px;
+            border: none;
+            margin-bottom: 10px;
+            display: flex;
+            justify-content: center;
+           
+            height: 35px;
+            width: 40%
+        }
+
+        #loginBtn:hover {
+            background-image: linear-gradient(to right, rgb(3, 3, 80), rgb(194, 39, 194), rgb(3, 3, 80));
+            text-transform: uppercase;
+            text-align: center;
+
+        }
+
+        a {
+            color: white;
+            text-decoration: none;
+            display: flex;
+            font-weight: 900;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            transition: color 0.3s ease, text-shadow 0.3s ease;
+        }
+
+        a:hover {
+            color: #d2d7dc;
+            font-weight: 900;
+            text-decoration: underline;
+            text-shadow: 0 0 5px rgba(0, 123, 255, 0.5);
+          
+        }
+
+        a:focus {
+            outline: none;
+            color: #0056b3;
+            text-shadow: 0 0 5px rgba(0, 123, 255, 0.5);
         }
     </style>
 </head>
+
 <body>
     <div class="container">
-        <h1>Unauthorized Access</h1>
+        <h1 id="loginHeader">Unauthorized Access</h1>
         <p>You are an unauthorized user.</p>
-        <p>Please contact your administrator if you believe this is an error.</p>
-        <a href="/home">Go to Home</a>
+        <p id="p2">Please contact your administrator if you believe this is an error.</p>
+        <div id="loginBtn" style="display:flec;"> <a href="/home">Go to Home</a></div>
     </div>
 </body>
+
 </html>

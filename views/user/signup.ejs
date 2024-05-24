@@ -7,7 +7,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css"
         integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA=="
         crossorigin="anonymous" referrerpolicy="no-referrer" />
-    <title>Har Hit Store | SignUp</title>
+    <title>Usersignup | SignUp</title>
     <style>
         /* Apply box-sizing property to all elements */
         * {
@@ -16,29 +16,60 @@
             padding: 0;
         }
 
-        h2 {
-            font-size: 24px;
-            /* Adjust font size */
-            font-weight: bold;
-            /* Make the text bold */
-            color: #666;
-            /* Set text color to a lighter shade */
-            margin-bottom: 10px;
-            /* Adjust bottom margin */
-            text-align: center;
-            /* Center-align the text */
-            text-transform: uppercase;
-            /* Uppercase text */
-            padding: 10px;
-            /* Add padding */
-            border-radius: 6px;
-            /* Add border radius */
-            box-shadow: 0 0px 2px rgba(0, 0, 0, 0.1);
-            width: 100%
-                /* Add a subtle shadow */
-                /* background-image: linear-gradient(to right, #f0f0f0, #e0e0e0); */
-                /* Light linear gradient background */
+        .header-logo {
+            height: 88px;
+            width: 100%;
+            box-shadow: 0px 2px 4px grey;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: white;
+            background-image: linear-gradient(to right, #2C3E50, #0a6aca, #354250);
+            /* Dark linear gradient background */
+            transition: background-image 0.5s ease, box-shadow 0.5s ease;
         }
+
+        .header-logo:hover {
+            background-image: linear-gradient(to right, #0a6aca, #2C3E50, #0a6aca);
+            box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
+        }
+
+        .header-title {
+            cursor: pointer;
+            user-select: none;
+            font-family: Arial, Helvetica, sans-serif;
+            font-size: 24px;
+            font-weight: bold;
+            letter-spacing: 2px;
+            animation: textGlow 2s ease-in-out infinite alternate;
+        }
+
+        .content {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+
+        }
+
+        #signupHeader {
+            font-family: Arial, Helvetica, sans-serif;
+            color: #0b3460;
+            /* Change this to your desired color */
+            font-weight: bold;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.1);
+            margin-bottom: 20px;
+            /* Adjust as needed for spacing */
+            transition: color 0.3s ease, text-shadow 0.3s ease;
+        }
+
+        #signupHeader:hover {
+            color: #0056b3;
+            /* Change to a darker shade or your preferred color */
+            text-shadow: 2px 2px 10px rgba(0, 86, 179, 0.3);
+        }
+
 
 
 
@@ -65,120 +96,171 @@
         }
 
         /* Ensure consistent font size and family */
-        input {
-            font-size: 16px;
-            /* Adjust as needed */
-            font-family: Arial, sans-serif;
-            /* or any other font family you prefer */
+        input:hover {
+            background-color: #f0f0f0;
+            border-color: #ceaede;
+            box-shadow:
+                0 0 10px rgba(255, 255, 255, 0.5),
+                /* Red */
+                0 0 20px rgba(51, 52, 64, 0.5),
+                /* Green */
+                0 0 30px rgba(255, 255, 255, 0.5);
+            /* Blue */
         }
 
-        /* Style the submit button */
-
-        #signUpBtn {
-            display: inline-block;
-            padding: 12px 24px;
-            /* Adjust padding to your preference */
-            font-size: 16px;
-            font-weight: bold;
-            text-align: center;
-            text-transform: uppercase;
-            border: none;
-            border-radius: 6px;
-            /* Adjust border radius for rounded corners */
-            cursor: pointer;
-            background-image: linear-gradient(to right, blue, purple);
-            color: white;
-            /* Set text color */
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-            /* Add a subtle shadow */
-            transition: background-color 0.3s ease;
-            /* Add smooth transition effect */
+        input:focus {
+            outline: none;
+            /* border-color: #0056b3; */
+            box-shadow:
+                0 0 10px rgba(255, 255, 255, 0.5),
+                /* Red */
+                0 0 20px rgba(51, 52, 64, 0.5),
+                /* Green */
+                0 0 30px rgba(255, 255, 255, 0.5);
+            /* Blue */
         }
 
-        #signUpBtn:hover {
-            background-image: linear-gradient(to right, #4e4086, #3d20b1);
-            /* Darken the background gradient on hover */
-        }
 
-        .header-logo {
-            height: 88px;
-            width: 100%;
-            box-shadow: 0px 2px 4px grey;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            color: white;
-            font-size: 12px;
-            background-image: linear-gradient(to right, #2C3E50, #34495E); /* Dark linear gradient background */
-        }
-
-        /* Change cursor to pointer on hover */
-
-
-        /* Style the hyperlink */
-        p a {
-            color: blue;
-            /* Change hyperlink color */
-            text-decoration: none;
-            /* Remove underline from hyperlink */
-        }
-
-        p a:hover {
-            text-decoration: underline;
-            /* Add underline on hover */
-        }
-
-        /* .passwordInput input[type="password"] {
-            width: 100%;
-        } */
-
-        .signupform {
-            margin-top: 150px;
-            margin-bottom: 20px;
-            width: 600px;
-            height: 370px;
-            box-shadow: 0px 0px 5px grey;
+        #signupform {
+            width: 75%;
+            margin-top: 100px;
+            background-color: white;
+            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.4);
             display: flex;
             flex-direction: column;
             justify-content: space-evenly;
             align-items: center;
             padding: 20px;
+            border-radius: 10px;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
             /* overflow: auto; */
         }
+
+        #signupform:hover {
+            transform: translateY(-10px);
+            box-shadow: 0px 10px 20px rgba(0, 0, 0, 0.2);
+        }
+
+        #signupform input[type="submit"] {
+            background-color: #007BFF;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s ease, transform 0.3s ease;
+        }
+
+        #signupform p {
+            margin: 10px 0;
+            font-size: 14px;
+        }
+
+
+
+        #signupform h2,
+        #signupform>input {
+            margin-top: 15px;
+        }
+
+        #signupform input {
+            width: 90%;
+            padding: 10px;
+        }
+
+
+        #signupform a {
+            color: #007BFF;
+            text-decoration: none;
+            transition: color 0.3s ease, text-shadow 0.3s ease;
+        }
+
+        #signupform a:hover {
+            color: #0056b3;
+            text-decoration: underline;
+            text-shadow: 0 0 5px rgba(0, 123, 255, 0.5);
+        }
+
+
+
 
         .innerDiv {
             display: flex;
             justify-content: space-between;
+
+            /* This line added */
+            width: 100%;
         }
 
         .innerLeft,
         .innerRight {
-            height: 100%;
-            width: 47%;
+            padding: 0%;
+            width: 50%;
             display: flex;
             flex-direction: column;
-            justify-content: space-evenly;
-            align-items: center;
+            /* justify-content: space-evenly; */
+            align-items: stretch;
+            /* background-color: #09549e; */
         }
+
+        .innerLeft input,
+        .innerRight input {
+            flex: 1;
+            /* Make input fields stretch to fill the available space */
+            margin: 5px;
+            /* Add margin between input fields */
+            box-sizing: border-box;
+            /* Include padding and border in the element's total width and height */
+            padding: 8px;
+            /* Add padding to the input fields */
+        }
+
 
         .passwordInput {
             display: flex;
         }
 
-        /* .passwordInput>input:focus {
-            outline: none;
-        } */
+        .passwordInput input[type="password"] {
+            width: 100%;
+        }
 
-        /* #signUpBtn {
-            width: 50%;
-            padding: 10px;
-            border: none;
+        .passwordInput>input:focus {
+            outline: none;
+        }
+
+        #signUpBtn {
             background-image: linear-gradient(to right, blue, purple);
             color: white;
             font-size: 16px;
-            margin-top: 2%;
-            
-        } */
+            border: none;
+            margin-bottom: 10px;
+        }
+
+        #signUpBtn:hover {
+            background-image: linear-gradient(to right, rgb(3, 3, 80), rgb(194, 39, 194), rgb(3, 3, 80));
+
+        }
+
+        a {
+            color: #007BFF;
+            text-decoration: none;
+            transition: color 0.3s ease, text-shadow 0.3s ease;
+        }
+
+        a:hover {
+            color: #0056b3;
+            text-decoration: underline;
+            text-shadow: 0 0 5px rgba(0, 123, 255, 0.5);
+        }
+
+        a:focus {
+            outline: none;
+            color: #0056b3;
+            text-shadow: 0 0 5px rgba(0, 123, 255, 0.5);
+        }
+
+
+
 
         .footer {
             width: 100%;
@@ -192,8 +274,15 @@
             font-family: Arial, Helvetica, sans-serif;
             font-size: 14px;
             font-weight: 700;
-            background-image: linear-gradient(to right, #2C3E50, #34495E); /* Dark linear gradient background */
+            background-image: linear-gradient(to right, #2C3E50, #0a6aca, #354250);
+            height: 6%;
+            transition: background-image 0.5s ease, box-shadow 0.5s ease;
 
+        }
+
+        .footer:hover {
+            background-image: linear-gradient(to right, #09549e, #2C3E50, #095bad);
+            box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
         }
     </style>
     <link rel="stylesheet" href="/styles/header.css">
@@ -201,20 +290,23 @@
 
 <body>
     <div class="header-logo">
-        <h1 style="cursor: pointer; user-select: none; font-family: Arial, Helvetica, sans-serif;"
-            title="BILLING CUM INVENTORY MANAGEMENT SYSTEM">BCI MANAGEMENT SYSTEM</h1>
+        <h1 class="header-title" title="BILLING CUM INVENTORY MANAGEMENT SYSTEM">BCI MANAGEMENT SYSTEM</h1>
     </div>
+
     <!-- Header end -->
     <div class="content">
         <form class="signupform" id="signupform" enctype="multipart/form-data">
-            <h2 style="font-family: Arial, Helvetica, sans-serif;">SIGNUP FORM</h2>
-            <div class="innerDiv" >
+            <h2 id="signupHeader">SIGNUP FORM</h2>
+            <div class="innerDiv">
                 <div class="innerLeft">
                     <input type="text" name="name" id="name" placeholder="Name">
                     <input type="email" name="email" id="email" placeholder="Email">
-                    <div style="display: flex; justify-content: flex-start; width: 90%; align-items: center; margin-top:20px;">
-                        <input type="password" name="password" id="password" placeholder="Password" style="border: none; width: 90%;">
-                        <i class="fa fa-eye" id="hideShowPass" aria-hidden="true" style="position: relative; right: 0; color: grey;"></i>
+                    <div
+                        style="display: flex; justify-content: flex-start; width: 90%; align-items: center; margin-top:20px;">
+                        <input type="password" name="password" id="password" placeholder="Password"
+                            style="border: none; width: 90%;">
+                        <i class="fa fa-eye" id="hideShowPass" aria-hidden="true"
+                            style="position: relative; right: 0; color: grey;"></i>
                     </div>
                     <input type="text" name="gst" id="gst" placeholder="GST Number">
                     <input type="text" name="pan" id="pan" placeholder="PAN Number">
@@ -227,20 +319,22 @@
                         style="text-transform: capitalize;">
                     <input type="text" name="address" id="address" placeholder="Store Address"
                         style="text-transform: capitalize;">
-                    <input type="text" name="city" id="city" placeholder="City" style="text-transform: capitalize;">
-                    <input type="text" name="state" id="state" placeholder="State" style="text-transform: capitalize;">
-                    <input type="text" name="pincode" id="pincode" placeholder="Pincode"
+                    <input type="text" name="city" id="city" placeholder="Store City"
+                        style="text-transform: capitalize;">
+                    <input type="text" name="state" id="state" placeholder="Store State"
+                        style="text-transform: capitalize;">
+                    <input type="text" name="pincode" id="pincode" placeholder="Store Pincode"
                         style="text-transform: capitalize;">
 
                 </div>
             </div>
             <p id="err" style=" font-weight: bold; text-align: center; width: 90%; text-wrap: wrap;"></p>
             <input type="submit" value="SignUp" id="signUpBtn">
-            <p>Registered ? <a href="/login">click here </a></p>
+            <p>Already Registered ? <a href="/login">click here </a></p>
         </form>
     </div>
     <div class="footer">
-        <p>Designed by: PAYAL KATOCH </p>
+        <p><i>Designed by: PAYAL KATOCH </i></p>
     </div>
 </body>
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
