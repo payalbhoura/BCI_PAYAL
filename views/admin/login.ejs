@@ -284,12 +284,18 @@
                 })
             })
                 .then((result) => {
-                    return result.json();
+                    if(result.status==200){
+                        window.location.href=result.url;
+                        return 0;
+                    }else{
+                        return result.json();
+                    }
                 })
                 .then(data => {
                     if (data != 0) {
-                        error.innerText = data?.msg;
+                        error.innerText = data?.status;
                     }
+                    // window.location.href=
                 })
                 .catch((err) => {
                     error.innerText = err;
