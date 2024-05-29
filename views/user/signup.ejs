@@ -8,12 +8,23 @@
         integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA=="
         crossorigin="anonymous" referrerpolicy="no-referrer" />
     <title>Usersignup | SignUp</title>
+    
     <style>
         /* Apply box-sizing property to all elements */
         * {
             box-sizing: border-box;
             margin: 0;
             padding: 0;
+        }
+
+        body {
+            font-family: Arial, Helvetica, sans-serif;
+            background-size: cover;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: white;
         }
 
         .header-logo {
@@ -23,7 +34,6 @@
             display: flex;
             justify-content: center;
             align-items: center;
-            color: white;
             background-image: linear-gradient(to right, #2C3E50, #0a6aca, #354250);
             /* Dark linear gradient background */
             transition: background-image 0.5s ease, box-shadow 0.5s ease;
@@ -37,7 +47,6 @@
         .header-title {
             cursor: pointer;
             user-select: none;
-            font-family: Arial, Helvetica, sans-serif;
             font-size: 24px;
             font-weight: bold;
             letter-spacing: 2px;
@@ -45,95 +54,73 @@
         }
 
         .content {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-
+            background: rgba(255, 255, 255, 0.85);
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+            /* background-image: url("/images/patterns/bush.png"); */
         }
 
         #signupHeader {
-            font-family: Arial, Helvetica, sans-serif;
             color: #0b3460;
-            /* Change this to your desired color */
             font-weight: bold;
             text-transform: uppercase;
             letter-spacing: 2px;
             text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.1);
             margin-bottom: 20px;
-            /* Adjust as needed for spacing */
             transition: color 0.3s ease, text-shadow 0.3s ease;
         }
 
         #signupHeader:hover {
             color: #0056b3;
-            /* Change to a darker shade or your preferred color */
             text-shadow: 2px 2px 10px rgba(0, 86, 179, 0.3);
         }
 
-
-
-
-        /* Remove default input field borders and adjust padding */
         input {
             border: none;
             padding: 10px;
             width: 100%;
             margin-bottom: 10px;
-            /* Adjust as needed to control the gap between input fields */
             font-size: 16px;
-            /* Adjust font size */
-            font-family: Arial, sans-serif;
-            /* or any other font family you prefer */
             box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-            /* Add box-shadow */
         }
 
-        /* Style the placeholder text */
-        /* Style the file input */
         input[type="file"] {
             padding-top: 12px;
-            /* Adjust vertically align the file input */
+            color: green;
         }
 
-        /* Ensure consistent font size and family */
         input:hover {
             background-color: #f0f0f0;
             border-color: #ceaede;
             box-shadow:
                 0 0 10px rgba(255, 255, 255, 0.5),
-                /* Red */
                 0 0 20px rgba(51, 52, 64, 0.5),
-                /* Green */
                 0 0 30px rgba(255, 255, 255, 0.5);
-            /* Blue */
         }
 
         input:focus {
             outline: none;
-            /* border-color: #0056b3; */
             box-shadow:
                 0 0 10px rgba(255, 255, 255, 0.5),
-                /* Red */
                 0 0 20px rgba(51, 52, 64, 0.5),
-                /* Green */
                 0 0 30px rgba(255, 255, 255, 0.5);
-            /* Blue */
         }
 
-
         #signupform {
-            width: 75%;
-            margin-top: 100px;
+            width: 65%;
+            margin-top: 30px;
             background-color: white;
             box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.4);
             display: flex;
             flex-direction: column;
             justify-content: space-evenly;
             align-items: center;
-            padding: 20px;
+            padding: 10px;
             border-radius: 10px;
             transition: transform 0.3s ease, box-shadow 0.3s ease;
-            /* overflow: auto; */
+            /* background: url("https://www.toptal.com/designers/subtlepatterns/uploads/paisley.png"); */
+            position: relative;
         }
 
         #signupform:hover {
@@ -151,15 +138,18 @@
             transition: background-color 0.3s ease, transform 0.3s ease;
         }
 
+        #signupform input[type="submit"]:hover {
+            background-color: #0056b3;
+            transform: scale(1.05);
+        }
+
         #signupform p {
             margin: 10px 0;
             font-size: 14px;
         }
 
-
-
         #signupform h2,
-        #signupform>input {
+        #signupform > input {
             margin-top: 15px;
         }
 
@@ -167,7 +157,6 @@
             width: 90%;
             padding: 10px;
         }
-
 
         #signupform a {
             color: #007BFF;
@@ -181,51 +170,24 @@
             text-shadow: 0 0 5px rgba(0, 123, 255, 0.5);
         }
 
-
-
-
         .innerDiv {
             display: flex;
             justify-content: space-between;
-
-            /* This line added */
             width: 100%;
         }
 
         .innerLeft,
         .innerRight {
-            padding: 0%;
             width: 50%;
             display: flex;
             flex-direction: column;
-            /* justify-content: space-evenly; */
             align-items: stretch;
-            /* background-color: #09549e; */
         }
 
         .innerLeft input,
         .innerRight input {
-            flex: 1;
-            /* Make input fields stretch to fill the available space */
             margin: 5px;
-            /* Add margin between input fields */
-            box-sizing: border-box;
-            /* Include padding and border in the element's total width and height */
             padding: 8px;
-            /* Add padding to the input fields */
-        }
-
-
-        .passwordInput {
-            display: flex;
-        }
-
-        .passwordInput input[type="password"] {
-            width: 100%;
-        }
-
-        .passwordInput>input:focus {
-            outline: none;
         }
 
         #signUpBtn {
@@ -238,29 +200,7 @@
 
         #signUpBtn:hover {
             background-image: linear-gradient(to right, rgb(3, 3, 80), rgb(194, 39, 194), rgb(3, 3, 80));
-
         }
-
-        a {
-            color: #007BFF;
-            text-decoration: none;
-            transition: color 0.3s ease, text-shadow 0.3s ease;
-        }
-
-        a:hover {
-            color: #0056b3;
-            text-decoration: underline;
-            text-shadow: 0 0 5px rgba(0, 123, 255, 0.5);
-        }
-
-        a:focus {
-            outline: none;
-            color: #0056b3;
-            text-shadow: 0 0 5px rgba(0, 123, 255, 0.5);
-        }
-
-
-
 
         .footer {
             width: 100%;
@@ -271,18 +211,34 @@
             display: flex;
             justify-content: center;
             align-items: center;
-            font-family: Arial, Helvetica, sans-serif;
             font-size: 14px;
             font-weight: 700;
             background-image: linear-gradient(to right, #2C3E50, #0a6aca, #354250);
             height: 6%;
             transition: background-image 0.5s ease, box-shadow 0.5s ease;
-
         }
 
         .footer:hover {
             background-image: linear-gradient(to right, #09549e, #2C3E50, #095bad);
             box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
+        }
+
+        .password-input-container {
+            display: flex;
+            align-items: center;
+            width: 92%;
+        }
+
+        .password-input-container input {
+            flex: 1;
+            padding-right: 30px;
+        }
+
+        .password-input-container #hideShowPass {
+            position: absolute;
+            left: 360px;
+            cursor: pointer;
+            color: grey;
         }
     </style>
     <link rel="stylesheet" href="/styles/header.css">
@@ -301,12 +257,9 @@
                 <div class="innerLeft">
                     <input type="text" name="name" id="name" placeholder="Name">
                     <input type="email" name="email" id="email" placeholder="Email">
-                    <div
-                        style="display: flex; justify-content: flex-start; width: 90%; align-items: center; margin-top:20px;">
-                        <input type="password" name="password" id="password" placeholder="Password"
-                            style="border: none; width: 90%;">
-                        <i class="fa fa-eye" id="hideShowPass" aria-hidden="true"
-                            style="position: relative; right: 0; color: grey;"></i>
+                    <div class="password-input-container">
+                        <input type="password" name="password" id="password" placeholder="Password">
+                        <i class="fa fa-eye" id="hideShowPass" aria-hidden="true"></i>
                     </div>
                     <input type="text" name="gst" id="gst" placeholder="GST Number">
                     <input type="text" name="pan" id="pan" placeholder="PAN Number">
@@ -330,7 +283,7 @@
             </div>
             <p id="err" style=" font-weight: bold; text-align: center; width: 90%; text-wrap: wrap;"></p>
             <input type="submit" value="SignUp" id="signUpBtn">
-            <p>Already Registered ? <a href="/login">click here </a></p>
+            <p style="color: black;">Already Registered ? <a href="/login">click here </a></p>
         </form>
     </div>
     <div class="footer">

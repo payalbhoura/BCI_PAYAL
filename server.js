@@ -41,19 +41,29 @@ function checkLoggedIn(req, res, next) {
 }
 
 function isAdmin(req, res, next) {
-    console.log("object",req.path);
-    console.log(req.url == '/login');
-    if (req.url == '/login') {
-         next();
+    console.log("Object:", req.path);
+    console.log("Original URL:", req.originalUrl);
+
+    // Allow access to the admin login page without checks
+    if (req.originalUrl === '/admin/login') {
+        return next();
     }
+
+    // Check if the user is logged in
     if (!req.session.isLoggedIn) {
-        return res.redirect("/login");
+        // If not logged in and trying to access admin route, redirect to admin login
+        return res.redirect("/admin/login");
     }
+
+    // Check if the logged-in user has an admin role
     if (req.session.role !== 'admin') {
         return res.render("message/unauthorized");
     }
+
     next();
 }
+
+
 
 app.get("/forgotpassword",forgotpasswordpage)
 app.post("/forgotpassword",forgotpassword)
@@ -63,8 +73,8 @@ app.get('/changepassword/:token',changepasswordpage)
 app.post('/changepassword',changepassword)
 
 
+app.use('/admin', isAdmin, adminRoutes);
 
-app.use('/admin',isAdmin,adminRoutes)
 app.use("/",checkLoggedIn,UserRoutes);// 
 //middleware end
 
