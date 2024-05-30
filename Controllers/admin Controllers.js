@@ -55,7 +55,13 @@ async function getAdminPage(req, res) {
             id: u._id,
             name: u.name,
             email: u.email,
-            aprroved: u.approved
+            address:u.address,
+            city:u.city,
+            state:u.state,
+            pincode:u.pincode,
+            pan:u.pan,
+            aprroved: u.approved,
+
 
         }
     })

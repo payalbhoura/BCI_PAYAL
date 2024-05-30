@@ -344,7 +344,7 @@ function createUser(req, res) {
     console.log();
     const user = {
         ...req.body,
-        profileUrl: "uploads\\" + req.file.filename
+        profileUrl: (req.file)?"uploads\\" + req?.file?.filename:"images\\logo.jpeg"
     }
     console.log(user);
     User.create(user)
