@@ -2,25 +2,38 @@ const email = document.getElementById("email")
 const error =  document.getElementById("err")
 const password = document.getElementById("password")
 
-password.addEventListener("input",e=>{
-    let regex =  /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@.#$!%*?&])[A-Za-z\d@.#$!%*?&]{8,15}$/; 
-    if(!regex.test(e.target.value.trim())){
-        error.innerText = "Password must begin with a capital and contain lower, number and alphanumeric character"
-        return false
-    } else{
-        error.innerText = ""
-    }
-})
+function setError(element, message){
+element.style.outline="1px solid red";
+error.innerText=message
+}
 
-email.addEventListener('input',e=>{
-    let regex = /^[a-z0-9]+@[a-z]+\.[a-z]{2,3}$/
-    if(!regex.test(e.target.value.trim())){
-        error.innerText = "Email is invalid !"
-        return false
-    } else{
-        error.innerText = ""
+function clearError(element){
+    element.style.outline="none";
+    error.innerText=""
+}
+
+function validateEmail(e) {
+    let regex = /^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$/;
+    if (!regex.test(e.target.value.trim())) {
+        setError(e.target, "Email is invalid!");
+        return false;
+    } else {
+        clearError(e.target);
     }
-})
+}
+
+function validatePass(e) {
+    let regex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@.#$!%*?&])[A-Za-z\d@.#$!%*?&]{8,15}$/;
+    if (!regex.test(e.target.value.trim())) {
+        setError(e.target, "Password must be 8-15 characters long, contain at least one uppercase letter, one lowercase letter, one number, and one special character.");
+        return false;
+    } else {
+        clearError(e.target);
+    }
+}
+
+email.addEventListener('input', validateEmail);
+password.addEventListener('input', validatePass);
 
 document.getElementById("loginBtn").addEventListener('click',e=>{
     if(error.innerText!=""){

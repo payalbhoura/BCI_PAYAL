@@ -1,16 +1,19 @@
 let catalogue;
 let table;
+const unitType = /^(GMs|KGs|Pcs|Ltr|MLtr)$/;
+
 
 //for new Item add to stock
 const invoiceNumber = document.getElementById("invNumber")
 const consignorName = document.getElementById("consignorName")
 const stockDate = document.getElementById("stockDate")
-const itemname = document.getElementById("name")
+const itemname = document.getElementById("itemName")
 const hsn = document.getElementById("hsn")
 const stock = document.getElementById("stock")
 const unit = document.getElementById("unit")
 const price = document.getElementById("price")
 const gst = document.getElementById("gst")
+
 
 //for details update
 const newName = document.getElementById("newName")
@@ -38,11 +41,11 @@ document.getElementById("openCloseForm").addEventListener('click',e=>{
     }
 })
 
-function Alert(field){
+function showAlert(message){
     swal.fire(
         {
             title:"Required",
-            text: field+" is required",
+            text: message,
             icon: 'warning',
             confirmButtonText: 'Ok'
         }
@@ -52,54 +55,74 @@ function Alert(field){
 document.getElementById("upload").addEventListener('click',e=>{addProduct()})
 
 //add new item POST
-function addProduct(){
-    if(itemname.value.trim().length<3){
-        Alert("Name")   
-        return
+function addProduct() {
+    // Validate required fields
+    if (itemname.value.trim().length < 3) {
+        showAlert("Name must be at least 3 characters");
+        return;
     }
-    if(stock.value<=0){
-        swal.fire({title:"Required",text:"Stock can not be 0 or empty",icon:"warning"})
-        return
+    if (stock.value <= 0) {
+        showAlert("Stock must be greater than 0");
+        return;
     }
+    if (isNaN(parseFloat(price.value)) || parseFloat(price.value) <= 0) {
+        showAlert("Price must be a valid number greater than 0");
+        return;
+    }
+    if (!unitType.test(unit.value)) {
+        showAlert("Please select a unit valid unit type eg. GMs,KGs,Pcs,Ltr,MLtr ");
+        return;
+    }
+
+    // Prepare data for POST request
     const productItem = {
-        "invoice":invoiceNumber.value || "",
-        "consignor":consignorName.value || "",
+        "invoice": invoiceNumber.value || "",
+        "consignor": consignorName.value || "",
         "date": stockDate.valueAsDate,
-        "name":itemname.value || "",
-        "hsn":hsn.value || "",
-        "price":price.value || 0,
-        "unit":unit.value || "",
-        "gst":gst.value || 0,
-        "stock":stock.value || 0
-    }
-    fetch("/addproducts",{
-        method:"POST",
-        headers:{
-            'content-type':'application/json'
+        "name": itemname.value || "",
+        "hsn": hsn.value || "",
+        "price": parseFloat(price.value),
+        "unit": unit.value || "",
+        "gst": parseFloat(gst.value) || 0,
+        "stock": parseInt(stock.value) || 0
+    };
+
+    // Send POST request
+    fetch("/addproducts", {
+        method: "POST",
+        headers: {
+            'content-type': 'application/json'
         },
-        body:JSON.stringify(productItem)
+        body: JSON.stringify(productItem)
     })
     .then((result) => {
-        if(result.ok){
-            clearInputs()
+        if (result.ok) {
+            clearInputs();
             swal.fire({
-                title:"Added",
-                text:"New product is added to inventory.",
+                title: "Added",
+                text: "New product is added to inventory.",
                 icon: 'success',
                 confirmButtonText: 'Ok'
-            })  
-            return result.json()
+            });
+            return result.json();
+        } else {
+            throw new Error('Something went wrong');
         }
     })
-    .then(res=>{
-        console.log(res);
-        catalogue.push(res)
-        createTable(catalogue)
+    .then(res => {
+        catalogue.push(res);
+        createTable(catalogue);
     })
     .catch((err) => {
-        alert(err)
+        swal.fire({
+            title: "Error",
+            text: err.message,
+            icon: 'error',
+            confirmButtonText: 'Ok'
+        });
     });
 }
+
 
 //clear new item inputs
 function clearInputs(){
