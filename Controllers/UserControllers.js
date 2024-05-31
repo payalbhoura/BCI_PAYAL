@@ -46,7 +46,8 @@ async function getBillPage(req, res) {
         store: req.session.store,
         invoiceNo: invNo,
         invoiceDate: new Date().toLocaleDateString(),
-        address: req.session.address
+        address: req.session.address,
+        profileUrl: req.session.profileUrl
     }
     res.render("user/generatebill", { user: user, items:items })
 }
@@ -232,7 +233,7 @@ function outwardTransact(productArray) {
                             dispatchState: product.state || "NA",
                             invNo: product.invoice || "",
                             inwardStock: 0,
-                            boxes: parseInt(Number(product.outward) / 6),
+                            boxes: Math.ceil(Number(product.outward) / 6),
                             outwardStock: product.outward,
                             stockBalance: product.stock,
                             sales: 0,
@@ -241,7 +242,7 @@ function outwardTransact(productArray) {
                         report.stockDetails.push(item)
                     } else {
                         report.stockDetails[productIndex].outwardStock += Number(product.outward)
-                        report.stockDetails[productIndex].outward += parseInt(Number(product.outward) / 6)
+                        report.stockDetails[productIndex].boxes += Math.ceil(Number(product.outward) / 6)
                         report.stockDetails[productIndex].stockBalance -= Number(product.outward)
                     }
                     await report.save()
@@ -303,7 +304,7 @@ function inwardTansact(product) {
                     dispatchState: product.state || "NA",
                     invNo: product.invoice,
                     inwardStock: Number(product.inward),
-                    boxes: parseInt(Number(product.inward) / 6),
+                    boxes: Math.ceil(Number(product.inward) / 6),
                     outwardStock: 0,
                     stockBalance: product.stock,
                     sales: 0,
@@ -313,7 +314,7 @@ function inwardTansact(product) {
                 report.stockDetails.push(item)
             } else {
                 report.stockDetails[productIndex].inwardStock += Number(product.inward)
-                report.stockDetails[productIndex].boxes += parseInt(Number(product.inward) / 6)
+                report.stockDetails[productIndex].boxes += Math.ceil(Number(product.inward) / 6)
                 report.stockDetails[productIndex].stockBalance += Number(product.inward)
             }
             await report.save()
@@ -334,7 +335,8 @@ function getBill(req, res) {
         gst: req.session.gst,
         pan: req.session.pan,
         store: req.session.store,
-        address: req.session.address
+        address: req.session.address,
+        profileUrl: req.session.profileUrl
     }
     res.render("user/billhistory", { user: user })
 }
