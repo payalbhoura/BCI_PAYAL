@@ -1,6 +1,146 @@
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css"
+    integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA=="
+    crossorigin="anonymous" referrerpolicy="no-referrer" />
+<style>
+    .header-logo {
+        height: 88px;
+        width: 100%;
+        box-shadow: 0px 2px 4px grey;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        background-image: linear-gradient(to right, #234363, #051729, #4a6581);
+        /* Dark linear gradient background */
+        transition: background-image 0.5s ease, box-shadow 0.5s ease;
+    }
+
+    .header-logo:hover {
+        background-image: linear-gradient(to right, #0a6aca, #2C3E50, #0a6aca);
+        box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
+    }
+
+    .header-nav {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        background-color: #f1f1f1;
+        /* Light background color */
+        padding: 10px 20px;
+        /* box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); */
+        /* Box shadow */
+    }
+
+    /* Navigation Links */
+    .nav-left,
+    .nav-right {
+        display: flex;
+        align-items: center;
+    }
+
+    .nav-btn {
+        color: #0a0202;
+        /* Dark text color */
+        font-weight: 600;
+        text-decoration: none;
+        margin: 0px 10px;
+        background-image: linear-gradient(to right, #d3dae0, #bec2c5, #f3f6f8);
+
+        border-radius: 5px;
+        box-shadow: 0px 0px 4px 3px solid grey;
+        font-weight: 800;
+
+
+
+        transition: background-color 0.3s, transform 0.3s;
+    }
+
+    .nav-btn:hover {
+        background-color: #d4d4d4;
+        transform: scale(1.05);
+        /*Slightly enlarge on hover */
+        border-color: blue;
+    }
+
+    .nav-btn:active {
+        background-color: #ccc;
+        transform: scale(1);
+
+    }
+
+    #name {
+        position: absolute;
+        right: 157px;
+        display: flex;
+        background-image: linear-gradient(to right, #0a6aca, #2C3E50, #0a6aca);
+
+        /* Even darker blue on click */
+        transform: scale(1);
+        text-align: center;
+        justify-content: center;
+        border-radius: 20px 8px 8px 20px;
+        align-items: center;
+        padding-right: 30px;
+    }
+
+    #name:hover {
+        background-image: linear-gradient(to right, #2C3E50, #020c16, #081727);
+
+
+
+    }
+
+    .profile-image,
+    .profile-placeholder {
+        height: 35px;
+        width: 36px;
+        background-color: #ddd1d4;
+        border-radius: 50%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .profile-image img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        border-radius: 50%;
+    }
+
+    .profile-placeholder i {
+        color: white;
+    }
+
+    .user-name {
+        color: white;
+        font-weight: bolder;
+        margin-left: 5px;
+        text-align: center;
+        background-image: linear-gradient(to right, #2C3E50, #0a6aca, #354250);
+
+    }
+   
+
+
+
+    /* User Actions */
+    .useractions {
+        margin-left: 20px;
+        color: #fff;
+        background-image: linear-gradient(to right, #2C3E50, #0a6aca, #354250);
+
+
+        padding: 10px 20px;
+        border-radius: 5px;
+      
+    }
+
+    
+</style>
 <div class="header-logo" id="headerLogo">
-        <h1><%= user.store %></h1>
+    <h1>
+        WELCOME TO THE <%= user.store %> STORE
+    </h1>
 </div>
 <div class="header-nav" id="headerNav">
     <div class="nav-left">
@@ -10,25 +150,34 @@
         <a class="nav-btn" href="/billhistory">Bill History</a>
     </div>
     <div class="nav-right">
-        <div style="position: absolute; right: 157px; display: flex; background-color: #6A5ACD; border-radius: 20px 8px 8px 20px; display: flex; align-items: center; padding: 0 30px 0 0;">
+        <div id="name"
+            style="position: absolute; right: 157px; display: flex; border-radius: 20px 8px 8px 20px; display: flex; align-items: center; padding: 0 30px 0 0;">
             <% if (user?.profileUrl) { %>
-                <div style="height: 35px; width: 36px; background-color: #b8a5a9; border-radius: 50%; position: relative; top: 0; left: 0; display: flex; justify-content: center; align-items: center;"><img src="<%= user.profileUrl %>" alt="No Image"  id="img"  style="width: 100%; height: 100%; object-fit: cover; border-radius: 50%; "></i></div>
+                <div
+                    style="height: 35px; width: 36px; background-color: #b8a5a9; border-radius: 50%; position: relative; top: 0; left: 0; display: flex; justify-content: center; align-items: center;">
+                    <img src="<%= user.profileUrl %>" alt="No Image" id="img"
+                        style="width: 100%; height: 100%; object-fit: cover; border-radius: 50%; "></i>
+                </div>
 
-                    <% } else { %>
-                        <div style="height: 35px; width: 36px; background-color: #b8a5a9; border-radius: 50%; position: relative; top: 0; left: 0; display: flex; justify-content: center; align-items: center;"><i class="fa fa-user" aria-hidden="true" style="color: white;"></i></div>
-            <% } %>
-             
-            <span style="color: white; margin-left: 5px; text-align: center;"><%= user.name %><span>
+                <% } else { %>
+                    <div
+                        style="height: 35px; width: 36px; background-color: #b8a5a9; border-radius: 50%; position: relative; top: 0; left: 0; display: flex; justify-content: center; align-items: center;">
+                        <i class="fa fa-user" aria-hidden="true" style="color: white;"></i>
+                    </div>
+                    <% } %>
+
+                        <span style="color: white; margin-left: 5px; text-align: center;">
+                            <%= user.name %><span>
         </div>
         <% if (user?.name) { %>
             <a href="/logout" class="nav-btn useractions">Logout</a>
             <% } else { %>
                 <a href="/login" class="nav-btn useractions">Login</a>
-        <% } %>
+                <% } %>
     </div>
 
     <script>
-        const user=`<%-JSON.stringify(user)  %>`
+        const user = `<%-JSON.stringify(user)  %>`
         console.log(user);
     </script>
 </div>

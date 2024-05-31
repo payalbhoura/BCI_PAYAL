@@ -12,105 +12,173 @@
             padding: 0;
         }
 
-        .header-logo{
+        body {
+            font-family: Arial, Helvetica, sans-serif;
+            background-size: cover;
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            color: white;
+        }
+
+        .header-logo {
             height: 88px;
             width: 100%;
             box-shadow: 0px 2px 4px grey;
             display: flex;
             justify-content: center;
             align-items: center;
-            color: white;
-            font-size: 12px;
-            background-image: linear-gradient(to right, #2C3E50, #34495E); /* Dark linear gradient background */
-
-          
+            background-image: linear-gradient(to right, #2C3E50, #0a6aca, #354250);
+            /* Dark linear gradient background */
+            transition: background-image 0.5s ease, box-shadow 0.5s ease;
         }
 
-        h2 {
-            font-weight: bold;
-            font-size: 2.0em;
-            text-align: center;
-            padding: 10px 10px;
-            border-radius: 10px;
-            /* box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.5);
-            background-color: #f0f0f0; */
-            color: #007bff;
-            font-family: Arial, sans-serif;
+        .header-logo:hover {
+            background-image: linear-gradient(to right, #0a6aca, #2C3E50, #0a6aca);
+            box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
         }
-        h2 {
+
+        .header-title {
+            cursor: pointer;
+            user-select: none;
             font-size: 24px;
-            /* Adjust font size */
             font-weight: bold;
-            /* Make the text bold */
-            color: #666;
-            /* Set text color to a lighter shade */
-            margin-bottom: 10px;
-            /* Adjust bottom margin */
-            text-align: center;
-            /* Center-align the text */
-            text-transform: uppercase;
-            /* Uppercase text */
-            padding: 10px;
-            /* Add padding */
-            border-radius: 6px;
-            /* Add border radius */
-            box-shadow: 0 0px 2px rgba(0, 0, 0, 0.1);
-            width: 100%
-                /* Add a subtle shadow */
-                /* background-image: linear-gradient(to right, #f0f0f0, #e0e0e0); */
-                /* Light linear gradient background */
+            letter-spacing: 2px;
+            animation: textGlow 2s ease-in-out infinite alternate;
         }
+
+
 
         #header {
-            width: 100%;
-            height: 20%;
+            /* background: linear-gradient(to right, #e6b9eb, #3d3883, #e3c4e6); */
+            /* color: #dddada; */
             display: flex;
-            font: 20px;
-            box-shadow: 0px 0px 1px grey;
-            padding: 2%;
-            margin-top: 2%
+            font-weight: bolder;
+            /* make the children elements flex items */
+            width: 100%;
+            padding: 10px 20px;
+            box-shadow: 0px 0px 4px 3px rgb(238, 235, 238);
         }
 
+        #header:hover {
+            background: linear-gradient(to right, #faf7fa, #3d3883, #faf7fa);
+            /* change cursor to pointer on hover */
+        }
 
+        #header a {
+            text-decoration: none;
+            color: #141313;
+            transition: color 0.3s ease;
+            margin-right: 40px;
+            /* space between links */
+            color: #2C3E50;
+            font-weight: bolder;
+            transition: color 0.3s ease;
+        }
 
-        .home,
-        .approved {
-            margin: 0px 20px;
+        #header a:hover {
+            text-decoration: underline;
+            /* underline on hover */
             cursor: pointer;
 
         }
 
-        .home:hover,
-        .approved:hover {
-            text-decoration: underline;
-            color: #007bff;
+        .home {
+            margin-left: 5%;
         }
 
+
+        .useractions {
+            margin-left: 63%
+        }
+
+        .useractions:hover {
+            cursor: pointer;
+            color: #f9f9f9;
+        }
+
+
+
+
+
+
+
+
+
+
+
         .container {
-            max-width: 800px;
+            width: 85%;
+            max-width: 1200px;
             margin: 20px auto;
             padding: 20px;
-            border: 1px solid #ccc;
-            border-radius: 5px;
+            box-shadow: 0px 0px 3px 4px grey;
+            border-radius: 8px;
             background-color: #f9f9f9;
-            height: 80%;
+            height: 45%;
+            overflow-x: auto;
         }
 
         table {
             width: 100%;
             border-collapse: collapse;
+            font-family: 'Arial', sans-serif;
             margin-bottom: 20px;
         }
 
-        th,
-        td {
-            padding: 8px;
+        /* Table header styling */
+        table thead {
+            background-color: #d3abf8;
+            color: #1a1717;
             text-align: left;
-            border-bottom: 1px solid #ddd;
         }
 
-        th {
+
+
+
+        table thead th {
+            padding: 7px;
+            font-size: 16px;
+            transition: background-color 0.3s, color 0.3s;
+        }
+
+        /* Table body styling */
+        table tbody {
+            background-color: #ffffff;
+            color: #121213;
+        }
+
+        table tbody tr:nth-child(odd) {
             background-color: #f2f2f2;
+        }
+
+        table tbody tr:hover {
+            background-color: #e9ecef;
+            transition: background-color 0.3s;
+        }
+
+        table tbody td {
+            padding: 10px;
+            border-bottom: 1px solid #dee2e6;
+            font-size: 14px;
+        }
+
+        /* Table Action button styling */
+        table tbody td .action-button {
+            padding: 5px 10px;
+            color: #ffffff;
+            background-color: #28a745;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: background-color 0.3s, transform 0.3s;
+        }
+
+        table tbody td .action-button:hover {
+            background-color: #218838;
+            transform: scale(1.05);
         }
 
         .action-buttons button {
@@ -130,22 +198,46 @@
             color: white;
             border: none;
         }
+        
+        .footer {
+            margin-top: 5%;
+            width: 100%;
+            position: absolute;
+            bottom: 0;
+            box-shadow: 0px 0px 1px 4px rgb(247, 242, 242);
+            color: rgb(245, 241, 251);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 14px;
+            font-weight: 700;
+            background-image: linear-gradient(to right, #2C3E50, #0a6aca, #354250);
+            height: 6%;
+            transition: background-image 0.5s ease, box-shadow 0.5s ease;
+        }
+
+        .footer:hover {
+            background-image: linear-gradient(to right, #09549e, #2C3E50, #095bad);
+            box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
+        }
+
+
     </style>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 </head>
 
 <body>
     <div class="header-logo">
-        <h1 style="cursor: pointer; user-select: none; font-family: Arial, Helvetica, sans-serif ;width:100%; align-items: center;"
-            title="BILLING CUM INVENTORY MANAGEMENT SYSTEM">BCI MANAGEMENT SYSTEM</h1>
+        <h1 class="header-title" title="BILLING CUM INVENTORY MANAGEMENT SYSTEM">BCI MANAGEMENT SYSTEM</h1>
     </div>
-    <h2 style="font-family: Arial, Helvetica, sans-serif;">HOME PAGE</h2>
+    <h2 id="signupHeader">ADMIN HOME PANEL</h2>
     <div id="header">
         <div class="home"> <a href="/admin/home">HOME </a></div>
         <div class="approved"> <a href="/admin/userhistory">USER HISTORY</a></div>
         <a href="/logout" class="nav-btn useractions">Logout</a>
     </div>
-    <div class="container">
+    <div class="container" >
+        <div style="overflow-x: auto;">
         <table id="users-table">
             <thead>
                 <tr>
@@ -155,6 +247,7 @@
                     <th>Email</th>
                     <th>Adress</th>
                     <th>City</th>
+                    <th>State</th>
                     <th>Pincode</th>
                     <th>Pan-Number</th>
                     <th>Action</th>
@@ -162,6 +255,7 @@
             </thead>
             <tbody>
                 <% users.forEach(user=> { %>
+
                     <tr id="<%=user.id%>">
 
                         <td>
@@ -177,7 +271,7 @@
                             <%=user.email %>
                         </td>
                         <td>
-                            <%=user.adress %>
+                            <%=user.address %>
                         </td>
                         <td>
                             <%=user.city %>
@@ -188,6 +282,9 @@
                         <td>
                             <%=user.pincode %>
                         </td>
+                        <td>
+                            <%=user.pan %>
+                        </td>
 
                         <td class="action-buttons">
                             <button class="accept" onclick="acceptUser(`<%= user.id %>`)">Accept</button>
@@ -197,6 +294,10 @@
                     <% }) %>
             </tbody>
         </table>
+    </div>
+    </div>
+     <div class="footer">
+        <p><i>Designed by: PAYAL KATOCH </i></p>
     </div>
 
     <script>
